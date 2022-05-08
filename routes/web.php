@@ -19,3 +19,7 @@ Route::get('/', function () {
         'calsList' => Calendar::all()->where('valid', 1)->map(function($cal) { return $cal->calcode;})->implode('-')
     ]);
 });
+
+Route::get('/install', function () {
+    Artisan::call('migrate');
+});
