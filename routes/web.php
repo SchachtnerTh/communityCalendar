@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Calendar;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('kalender2', [
+        'calsList' => Calendar::all()->where('valid', 1)->map(function($cal) { return $cal->calcode;})->implode('-')
+    ]);
 });
