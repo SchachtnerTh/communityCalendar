@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('calendars', function (Blueprint $table) {
+        Schema::create('clists', function (Blueprint $table) {
             $table->id();
-            $table->string('calcode', 50)->unique(); // calcode
-            $table->string('calname', 200)->unique(); // calname
-            $table->tinyInteger('valid')->default(1); // valid flag
-            $table->tinyInteger('public_visible')->default(1); // visibility flag
             $table->timestamps();
+            $table->string('name', 30)->unique();
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calendars');
+        Schema::dropIfExists('clists');
     }
 };

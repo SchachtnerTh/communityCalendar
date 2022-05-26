@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\GroupController;
 use App\Models\Calendar;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/default-cal', function () {
     return view('kalender2', [
         'calsList' => Calendar::all()->where('valid', 1)->map(function($cal) { return $cal->calcode;})->implode('-')
     ]);
+});
+
+Route::get('/test', function () {
+    return view('calendar_selection');
+});
+
+Route::get('/', function() {
+    return view('welcome');
 });
 
 Route::get('/install', function () {
@@ -26,6 +36,9 @@ Route::get('/install', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['verified'])->name('dashboard');
+
+Route::get('/groups', [GroupController::class, 'show']);
+
 
 require __DIR__.'/auth.php';

@@ -1,3 +1,4 @@
+<!--
 <!doctype html>
 <html>
 
@@ -11,3 +12,9 @@
         <iframe class="w-full h-full " src="https://events.th-schachtner.de/index.php/apps/calendar/p/{{ $calsList }}/dayGridMonth/now"></iframe>
     </body>
 </html>
+-->
+<x-mylayout>
+    <div class="flex w-full h-full">
+        <iframe class="w-full h-full" src="https://events.th-schachtner.de/index.php/apps/calendar/p/{{ $calsList }}/dayGridMonth/now"></iframe>
+    </div>
+</x-mylayout>

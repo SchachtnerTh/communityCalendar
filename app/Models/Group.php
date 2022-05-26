@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Calendar extends Model
+class Group extends Model
 {
     use HasFactory;
 
-    public function groups()
+    public function calendars()
     {
-        return $this->belongsToMany(Group::class, 'calendar_group');
+        return $this->belongsToMany(Calendar::class, 'calendar_group');
     }
 
     public function clists()
     {
-        return $this->belongsToMany(Clist::class, 'calendar_clist');
+        return $this->belongsToMany(Clist::class, 'clist_group');
     }
 }
