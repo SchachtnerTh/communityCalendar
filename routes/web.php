@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\GroupController;
 use App\Models\Calendar;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\ClistController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +28,9 @@ Route::get('/test', function () {
     return view('calendar_selection');
 });
 
-Route::get('/', function() {
-    return view('welcome');
-});
+//Route::get('/', function() {
+//    return view('welcome');
+//});
 
 Route::get('/install', function () {
     Artisan::call('migrate');
@@ -38,7 +40,23 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['verified'])->name('dashboard');
 
-Route::get('/groups', [GroupController::class, 'show']);
+Route::get('/', [GroupController::class, 'show']);
 
+Route::get('admin/calendars/create', [CalendarController::class, 'create'])->middleware('admin');
+Route::post('admin/calendars', [CalendarController::class, 'store'])->middleware('admin');
+
+Route::get('admin/lists/create', [ClistController::class, 'create'])->middleware('admin');
+Route::post('admin/lists', [ClistController::class, 'store'])->middleware('admin');
+
+Route::get('admin/groups/create', [GroupController::class, 'create'])->middleware('admin');
+Route::post('admin/groups', [GroupController::class, 'store'])->middleware('admin');
+
+Route::get('showlist/{list}', [ClistController::class, 'show']);
+/*Route::get('showlist/{list}', function ($list) {
+
+    return view('kalender2', [
+        'calsList' => $list
+    ]);
+});*/
 
 require __DIR__.'/auth.php';

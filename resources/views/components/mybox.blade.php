@@ -7,7 +7,7 @@
             <ul>
                 @foreach ($group->clists as $clist)
                     <li>
-                        <a href="{{ $clist->calurl }}">{{ $clist->name }}</a>
+                        <a href="/showlist/{{ $clist->slug }}">{{ $clist->name }}</a>
                     </li>
                 @endforeach
 <!--                <li>Altach</li>

@@ -9,6 +9,8 @@ class Calendar extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['calname', 'calcode'];
+
     public function groups()
     {
         return $this->belongsToMany(Group::class, 'calendar_group');

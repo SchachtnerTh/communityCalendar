@@ -18,8 +18,8 @@ return new class extends Migration
         Schema::create('clist_group', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(Clist::class);
-            $table->foreignIdFor(Group::class);
+            $table->foreignIdFor(Clist::class)->onDelete('cascade');
+            $table->foreignIdFor(Group::class)->onDelete('cascade');
         });
     }
 

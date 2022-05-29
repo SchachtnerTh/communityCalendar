@@ -9,6 +9,8 @@ class Clist extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug'];
+
     public function groups() {
         return $this->belongsToMany(Group::class, 'clist_group');
     }

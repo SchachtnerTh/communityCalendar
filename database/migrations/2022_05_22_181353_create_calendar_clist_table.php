@@ -18,8 +18,8 @@ return new class extends Migration
         Schema::create('calendar_clist', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(Calendar::class);
-            $table->foreignIdFor(Clist::class);
+            $table->foreignIdFor(Calendar::class)->onDelete('cascade');
+            $table->foreignIdFor(Clist::class)->onDelete('cascade');
         });
     }
 

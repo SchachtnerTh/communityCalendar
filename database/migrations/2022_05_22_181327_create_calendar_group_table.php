@@ -18,8 +18,8 @@ return new class extends Migration
         Schema::create('calendar_group', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(Calendar::class);
-            $table->foreignIdFor(Group::class);
+            $table->foreignIdFor(Calendar::class)->onDelete('cascade');
+            $table->foreignIdFor(Group::class)->onDelete('cascade');
         });
     }
 
