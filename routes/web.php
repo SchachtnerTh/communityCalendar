@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ClistController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +37,9 @@ Route::get('/install', function () {
     Artisan::call('migrate');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['verified'])->name('dashboard');
 
-Route::get('/', [GroupController::class, 'show']);
+
+Route::get('/', [GroupController::class, 'showGroups']);
 
 Route::get('admin/calendars/create', [CalendarController::class, 'create'])->middleware('admin');
 Route::post('admin/calendars', [CalendarController::class, 'store'])->middleware('admin');
@@ -52,11 +51,22 @@ Route::get('admin/groups/create', [GroupController::class, 'create'])->middlewar
 Route::post('admin/groups', [GroupController::class, 'store'])->middleware('admin');
 
 Route::get('showlist/{list}', [ClistController::class, 'show']);
-/*Route::get('showlist/{list}', function ($list) {
 
-    return view('kalender2', [
-        'calsList' => $list
-    ]);
-});*/
+Route::group(['middleware' => 'verified'], function() {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::view('profile', 'profile')->name('profile');
+
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::resource('groups', GroupController::class);
+
+    Route::resource('clists', ClistController::class);
+
+    Route::resource('calendars', CalendarController::class);
+
+});
 
 require __DIR__.'/auth.php';
