@@ -12,18 +12,20 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('calendars.index')" :active="request()->routeIs('calendars.index')">
-                        {{ __('Calendars') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('groups.index')" :active="request()->routeIs('groups.index')">
-                        {{ __('Groups') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('clists.index')" :active="request()->routeIs('clists.index')">
-                        {{ __('Calendar Lists') }}
-                    </x-nav-link>
+                    @if(Auth::user()->admin)
+                        <x-nav-link :href="route('calendars.index')" :active="request()->routeIs('calendars.index')">
+                            {{ __('Calendars') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('groups.index')" :active="request()->routeIs('groups.index')">
+                            {{ __('Groups') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('clists.index')" :active="request()->routeIs('clists.index')">
+                            {{ __('Calendar Lists') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

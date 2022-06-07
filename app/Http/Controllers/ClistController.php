@@ -110,7 +110,8 @@ class ClistController extends Controller
 
     public function show($list)
     {
-        // $list = Clist::find($list)->calendars->map(function($cal) { return $cal->calcode; })->implode('-');
+        //$list = Clist::where('slug', '=', $list)->calendars->map(function($cal) { return $cal->calcode; })->implode('-');
+        //dd($list);
 
         return view('lists.show', [
             'calsList' => Clist::where('slug', '=', $list)->first()->calendars->map(function($cal) { return $cal->calcode; })->implode('-')

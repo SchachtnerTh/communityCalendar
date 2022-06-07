@@ -52,10 +52,11 @@ Route::post('admin/groups', [GroupController::class, 'store'])->middleware('admi
 
 Route::get('showlist/{list}', [ClistController::class, 'show']);
 
-Route::group(['middleware' => 'verified'], function() {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('verified')->name('dashboard');
+
+Route::group(['middleware' => 'admin'], function() {
 
     Route::view('profile', 'profile')->name('profile');
 
