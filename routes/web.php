@@ -56,7 +56,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('verified')->name('dashboard');
 
-Route::group(['middleware' => 'admin'], function() {
+Route::group(['middleware' => [
+        'admin',
+        'auth',
+        'verified']
+        ]
+    , function() {
 
     Route::view('profile', 'profile')->name('profile');
 

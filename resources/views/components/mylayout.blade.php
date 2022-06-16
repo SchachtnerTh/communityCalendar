@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> 
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
         <title>Laravel</title>
 
@@ -26,12 +26,12 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-2 right-2 px-4 py-1 sm:block bg-gray-100 rounded-full">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-900 dark:text-gray-500 underline">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-900 dark:text-gray-500 underline">{{ __('Dashboard<') }}</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-900 dark:text-gray-500 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-900 dark:text-gray-500 underline">{{ __('Log in') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-900 dark:text-gray-500 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-900 dark:text-gray-500 underline">{{ __('Register') }}</a>
                         @endif
                     @endauth
                 </div>
